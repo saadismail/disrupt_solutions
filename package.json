@@ -1,0 +1,30 @@
+{
+  "name": "disrupt_solutions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "*",
+    "mongoose": "*",
+    "bcryptjs": "*",
+    "cors": "*",
+    "jsonwebtoken": "*",
+    "body-parser": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kestrel97/disrupt_solutions.git"
+  },
+  "author": "Syed Hamza Ali, Anas Bin Faisal, Saad Ismail",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kestrel97/disrupt_solutions/issues"
+  },
+  "homepage": "https://github.com/kestrel97/disrupt_solutions#readme"
+}
