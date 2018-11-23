@@ -11,7 +11,7 @@ CREATE TABLE `user` (
   `l_name` varchar(20),
   `email` varchar(30),
   `password` varchar(30),
-  `access_level` tinyint,
+  `access_level` tinyint, -- 0 = unverified user, 1 = normal verified user, 2 = admin
   `register_date` timestamp,
   PRIMARY KEY (`id`)
 );
@@ -29,7 +29,7 @@ CREATE TABLE `question` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(20),
   `body` varchar(300),
-  `status` tinyint,
+  `status` tinyint, -- 0 = deleted, 1 = unsolved, 2 = solved
   `author_id` int,
   FOREIGN KEY (author_id)
     REFERENCES user(id),
@@ -63,7 +63,7 @@ CREATE TABLE `vote` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int,
   `question_id` int,
-  `flag` tinyint,
+  `flag` tinyint, -- -1 = downvote, 1 = upvote
   FOREIGN KEY (user_id)
     REFERENCES user(id),
   FOREIGN KEY (question_id)

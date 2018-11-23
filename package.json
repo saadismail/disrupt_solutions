@@ -13,7 +13,7 @@
     "cors": "*",
     "express": "*",
     "jsonwebtoken": "*",
-    "mongoose": "*",
+    "mysql": "*",
     "passport": "*",
     "passport-jwt": "*",
     "router": "^1.3.3"
