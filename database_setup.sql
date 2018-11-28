@@ -10,7 +10,7 @@ CREATE TABLE `user` (
   `f_name` varchar(20),
   `l_name` varchar(20),
   `email` varchar(30),
-  `password` varchar(30),
+  `password` varchar(60),
   `access_level` tinyint, -- 0 = unverified user, 1 = normal verified user, 2 = admin
   `register_date` timestamp,
   PRIMARY KEY (`id`)
