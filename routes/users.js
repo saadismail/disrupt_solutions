@@ -1,34 +1,8 @@
 const express = require('express');
-const database = require('../config/database')
-const mysql = require('mysql');
 const router = express.Router();
 const AuthService = require('../services/authService')
 
-var mySQLPool = mysql.createPool({
-  connectionLimit : 1,
-  host            : database.host,
-  user            : database.username,
-  password        : database.password,
-  database        : database.database
-});
-
-const db = mysql.createConnection ({
-  host            : database.host,
-  user            : database.username,
-  password        : database.password,
-  database        : database.database
-});
-
-// connect to database
-db.connect((err) => {
-  if (err) {
-      throw err;
-  }
-  console.log('Connected to database');
-});
-global.db = db;
-
-const authService = new AuthService(db);
+const authService = new AuthService();
 
 router.post('/register', (req, res) => {
   let user = {
@@ -39,7 +13,7 @@ router.post('/register', (req, res) => {
     "access_level": req.body.access_level
   }
 
-  authService.registerUser(db, user, (err) => {
+  authService.registerUser(user, (err) => {
     if (err) {
       res.json({success: false, msg: err})
     } else {
