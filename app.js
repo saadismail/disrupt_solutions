@@ -6,21 +6,21 @@ const passport = require('passport');
 
 const app = express();
 
-const users = require('./routes/users');
+const usersRoutes = require('./routes/users');
 
-const port =3000;
+const port = 3000;
 
 // middlewares
 app.use(cors());
 app.use(bodyParser.json());
 
-app.use('/users', users );
+app.use('/users', usersRoutes);
 
 // indexRoute
-app.get('/', (req,res) =>{
+app.get('/', (req,res) => {
   res.send("Invalid Endpoint");
 })
 
-app.listen(port, ()=>{
+app.listen(port, () => {
   console.log("server started @ port: "+port);
 })
