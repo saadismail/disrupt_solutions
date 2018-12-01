@@ -26,8 +26,6 @@ global.db = db;
 
 const app = express();
 
-const usersRoutes = require('./routes/users');
-
 const port = 3000;
 
 // CORS Middleware
@@ -41,7 +39,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport);
 
+const usersRoutes = require('./routes/users');
 app.use('/users', usersRoutes);
+
+const dataRoutes = require('./routes/data');
+app.use('/', dataRoutes);
 
 // indexRoute
 app.get('/', (req,res) => {

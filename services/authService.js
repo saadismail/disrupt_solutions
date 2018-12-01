@@ -2,9 +2,9 @@ const bcrypt = require('bcryptjs');
 
 class AuthService {
     registerUser(user, callback) {
-        this.isEmailExist(user.email, (emailExists) => {
-            if (emailExists) {
-                callback("User already exists or problems accessing database");
+        this.isEmailExist(user.email, (err) => {
+            if (err) {
+                callback(err);
             } else {
                 bcrypt.genSalt(10, (err, salt) => {
                     bcrypt.hash(user.password, salt, (err, hash) => {
@@ -32,7 +32,15 @@ class AuthService {
     isEmailExist(email, callback) {
         var sql = "SELECT * FROM user WHERE email = ?";
         db.query(sql, [email], (err, result) => {
-            callback(err || result.length != 0); // Return true DB returned error or result not empty
+            if (err) {
+                callback(err);
+            } else {
+                if (result.length != 0) {
+                    callback("User already exists");
+                } else {
+                    callback(null);
+                }
+            }
         });
     }
 
@@ -40,18 +48,14 @@ class AuthService {
         var sql = "SELECT * FROM user WHERE email = ?";
         db.query(sql, [email], (err, result) => {
             if (err) callback(err);
-
-            callback(null, JSON.parse(JSON.stringify(result[0])));
+            else callback(null, JSON.parse(JSON.stringify(result[0])));
         })
     }
 
     comparePassword(password, hash, callback) {
         bcrypt.compare(password, hash, (err, isMatched) => {
-            if (err) {
-                console.log(err);
-            }
-            
-            callback(null, isMatched);
+            if (err) console.log(err);
+            else callback(null, isMatched);
         });
     }
 }
