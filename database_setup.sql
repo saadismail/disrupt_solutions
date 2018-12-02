@@ -7,9 +7,8 @@ DROP TABLE IF EXISTS `user`;
 
 CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `f_name` varchar(20),
-  `l_name` varchar(20),
-  `email` varchar(30),
+  `name` varchar(30),
+  `email` varchar(255),
   `password` varchar(60),
   `access_level` tinyint, -- 0 = unverified user, 1 = normal verified user, 2 = admin
   `register_date` timestamp,
@@ -27,8 +26,8 @@ CREATE TABLE `tag` (
 
 CREATE TABLE `question` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(20),
-  `body` varchar(300),
+  `title` varchar(100),
+  `body` varchar(10000),
   `status` tinyint, -- 0 = deleted, 1 = unsolved, 2 = solved
   `author_id` int,
   FOREIGN KEY (author_id)
@@ -38,7 +37,7 @@ CREATE TABLE `question` (
 
 CREATE TABLE `answer` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `body` varchar(300),
+  `body` varchar(10000),
   `author_id` int,
   `question_id` int,
   FOREIGN KEY (author_id)

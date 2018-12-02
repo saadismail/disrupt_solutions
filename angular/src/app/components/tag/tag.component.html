@@ -1,0 +1,11 @@
+<ul class="list-group">
+
+  <!-- THIS DOES NOT WORK -->
+  <div class="list-group-item list-group-item-action active" *ngIf="questions?.length == 0">
+    No questions exist for this tag.
+  </div>
+
+  <li *ngFor="let question of questions$" class="list-group-item">
+    <a href="/question/{{question.id}}">{{question.title}}</a>
+  </li>
+</ul>

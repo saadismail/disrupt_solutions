@@ -58,4 +58,17 @@ export class AuthService {
     const jwtHelperService = new JwtHelperService();
     return !jwtHelperService.isTokenExpired(localStorage.getItem('id_token'));
   }
+
+  isAdmin() {
+    return (
+      this.isLoggedIn &&
+      localStorage.getItem('user') != undefined &&
+      JSON.parse(localStorage.getItem('user')).access_level == 2
+    );
+  }
+
+  getLoggedInUserId() {
+    if (localStorage.getItem('user') == undefined) return undefined;
+    return JSON.parse(localStorage.getItem('user')).id;
+  }
 }

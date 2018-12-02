@@ -10,8 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  f_name: String;
-  l_name: String;
+  name: String;
   email: String;
   password: String;
   confirm_password: String;
@@ -28,8 +27,7 @@ export class RegisterComponent implements OnInit {
 
   onRegisterSubmit() {
     const user = {
-      f_name: this.f_name,
-      l_name: this.l_name,
+      name: this.name,
       email: this.email,
       password: this.password,
       confirm_password: this.confirm_password,
@@ -38,19 +36,19 @@ export class RegisterComponent implements OnInit {
 
     // Required Fields
     if (!this.validateService.validateRegister(user)) {
-      this.flashMessagesService.show('Please fill all the fields', { cssClass: 'alert alert-dismissible alert-danger', timeout: 5000 })
+      this.flashMessagesService.show('Please fill all the fields', { cssClass: 'alert alert-dismissible alert-danger', timeout: 1000 })
       return false;
     }
 
     // Match password and confirm_password
     if (user.password != user.confirm_password) {
-      this.flashMessagesService.show('Passwords do not match', { cssClass: 'alert alert-dismissible alert-danger', timeout: 5000 })
+      this.flashMessagesService.show('Passwords do not match', { cssClass: 'alert alert-dismissible alert-danger', timeout: 1000 })
       return false;
     }
 
     // Validate email
     if (!this.validateService.validateEmail(user.email)) {
-      this.flashMessagesService.show('Email is not valid', { cssClass: 'alert alert-dismissible alert-danger', timeout: 5000 })
+      this.flashMessagesService.show('Email is not valid', { cssClass: 'alert alert-dismissible alert-danger', timeout: 1000 })
       return false;
     }
 
@@ -58,13 +56,13 @@ export class RegisterComponent implements OnInit {
     this.authService.registerUser(user).subscribe(data => {
       console.log(data);
       if (data.success) {
-        this.flashMessagesService.show('You are registered successfully', { cssClass: 'alert alert-dismissible alert-success', timeout: 5000 })
+        this.flashMessagesService.show('You are registered successfully', { cssClass: 'alert alert-dismissible alert-success', timeout: 1000 })
         this.router.navigate(['/login']);
       } else {
         if (data.msg != undefined) {
-          this.flashMessagesService.show(data.msg, { cssClass: 'alert alert-dismissible alert-danger', timeout: 5000 });
+          this.flashMessagesService.show(data.msg, { cssClass: 'alert alert-dismissible alert-danger', timeout: 1000 });
         } else {
-          this.flashMessagesService.show('Something went wrong', { cssClass: 'alert alert-dismissible alert-danger', timeout: 5000 });
+          this.flashMessagesService.show('Something went wrong', { cssClass: 'alert alert-dismissible alert-danger', timeout: 1000 });
         }
         this.router.navigate(['/register']);
       }

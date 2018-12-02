@@ -9,7 +9,7 @@ export class ValidateService {
 
   validateRegister(user) {
     console.log(user);
-    if (user.f_name == undefined || user.l_name == undefined || user.email == undefined || user.password == undefined || user.confirm_password == undefined) {
+    if (user.name == undefined || user.email == undefined || user.password == undefined || user.confirm_password == undefined) {
       return false;
     }
 
@@ -23,5 +23,9 @@ export class ValidateService {
 
   validateLogin(user) {
     return (user.email != undefined && user.password != undefined);
+  }
+
+  validateNewQuestion(question) {
+    return (question.title != undefined && question.body != undefined && question.tags != undefined)
   }
 }

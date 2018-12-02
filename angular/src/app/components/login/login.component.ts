@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 
     // Required Fields
     if (!this.validateService.validateLogin(user)) {
-      this.flashMessageService.show("Fill all the details.", { cssClass: 'alert alert-dismissible alert-danger', timeout: 5000 });
+      this.flashMessageService.show("Fill all the details.", { cssClass: 'alert alert-dismissible alert-danger', timeout: 1000 });
       return false;
     }
     
@@ -40,12 +40,12 @@ export class LoginComponent implements OnInit {
     this.authService.authenticateUser(user).subscribe(data => {
       console.log(data);
       if (!data.success) {
-        this.flashMessageService.show(data.msg, { cssClass: 'alert alert-dismissible alert-danger', timeout: 5000 });
+        this.flashMessageService.show(data.msg, { cssClass: 'alert alert-dismissible alert-danger', timeout: 1000 });
         return false;
       } else {
-        this.flashMessageService.show(data.msg, { cssClass: 'alert alert-dismissible alert-success', timeout: 5000 });
+        this.flashMessageService.show(data.msg, { cssClass: 'alert alert-dismissible alert-success', timeout: 1000 });
         this.authService.storeUserData(data.token, data.user);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/']);
       }
     })
 

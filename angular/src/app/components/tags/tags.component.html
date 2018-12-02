@@ -1,5 +1,5 @@
 <ul class="list-group">
   <li *ngFor="let tag of tags$" class="list-group-item">
-    {{tag.name}}
+    <a href="/tag/{{tag.id}}">{{tag.name}}</a>
   </li>
 </ul>

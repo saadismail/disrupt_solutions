@@ -9,8 +9,7 @@ const authService = new AuthService();
 
 router.post('/register', (req, res) => {
     let user = {
-        "f_name": req.body.f_name,
-        "l_name": req.body.l_name,
+        "name": req.body.name,
         "email": req.body.email,
         "password": req.body.password,
         "access_level": req.body.access_level
@@ -59,9 +58,9 @@ router.post('/authenticate', (req, res) => {
                 token: 'JWT ' + token,
                 user: {
                     id: user.id,
-                    f_name: user.f_name,
-                    l_name: user.l_name,
-                    email: user.email
+                    name: user.name,
+                    email: user.email,
+                    access_level: user.access_level
                 }
             });
         })

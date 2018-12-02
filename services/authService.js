@@ -13,8 +13,8 @@ class AuthService {
                         }
                         user.password = hash;
                         
-                        var sql = "INSERT INTO user (f_name, l_name, email, password, access_level) VALUES (?, ?, ?, ?, ?)";
-                        var values = [user.f_name, user.l_name, user.email, user.password, user.access_level];
+                        var sql = "INSERT INTO user (name, email, password, access_level) VALUES (?, ?, ?, ?)";
+                        var values = [user.name, user.email, user.password, user.access_level];
                         
                         db.query(sql, values, (err, result) => {
                             if (err) {

@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
     "@auth0/angular-jwt": "^2.0.0",
+    "angular-froala-wysiwyg": "^2.9.1",
     "angular-jwt": "^0.1.10",
     "angular2-flash-messages": "^3.0.1",
     "core-js": "^2.5.4",

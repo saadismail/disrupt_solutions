@@ -1,3 +1,56 @@
-<p>
-  question works!
-</p>
+<div *ngIf="question">
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <h2 class="page-header">{{ question.title }}</h2>
+        </div>
+        <div class="col-sm-2">
+                Author: {{ question.name }}
+        </div>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <span [innerHTML]="this.question.body"> </span>
+                </div>
+
+                <div class="col-sm-2">
+                    <br>
+                    <div class="arrow-up"></div>
+                    <br>
+                    <div class="arrow-down"></div>
+                </div>
+            </div>
+        </li>
+
+        <div *ngIf="tags$.length > 0">
+
+            <br>
+            <h4>Tags:</h4>
+            
+            <li *ngFor="let tag of tags$" class="list-group-item">
+                <a href="/tag/{{tag.tag_id}}">{{tag.name}}</a>
+            </li>
+        </div>
+
+        <div *ngIf="answers$.length > 0">
+            <br>
+            <h4>Answers:</h4>
+            
+            <li *ngFor="let answer of answers$" class="list-group-item">
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <span [innerHTML]="answer.body"> </span>
+                    </div>
+
+                    <div class="col-sm-2">
+                        Author: {{answer.name}}
+                    </div>
+                </div>
+                
+            </li>
+        </div>
+    </ul>
+</div>

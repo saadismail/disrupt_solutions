@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,7 @@ import { AuthService } from './services/auth.service';
 import { DataService } from './services/data.service';
 import { TagQuestionComponent } from './components/tag-question/tag-question.component';
 import { TagsComponent } from './components/tags/tags.component';
+import { TagComponent } from './components/tag/tag.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -30,7 +32,8 @@ const appRoutes: Routes = [
   { path: 'new-question', component: NewQuestionComponent, canActivate:[AuthGuard] },
   { path: 'question/:id', component: QuestionComponent },
   { path: 'tag-question/:id', component: TagQuestionComponent },
-  { path: 'tags', component: TagsComponent }
+  { path: 'tags', component: TagsComponent },
+  { path: 'tag/:id', component: TagComponent }
 ];
 
 @NgModule({
@@ -45,6 +48,7 @@ const appRoutes: Routes = [
     ForgetPasswordComponent,
     TagQuestionComponent,
     TagsComponent,
+    TagComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,9 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    FlashMessagesModule.forRoot()
+    FlashMessagesModule.forRoot(),
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   ],
   providers: [
     AuthService,
