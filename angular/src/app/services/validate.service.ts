@@ -28,4 +28,8 @@ export class ValidateService {
   validateNewQuestion(question) {
     return (question.title != undefined && question.body != undefined && question.tags != undefined)
   }
+
+  validateNewComment(comment) {
+    return (comment.body != undefined);
+  }
 }

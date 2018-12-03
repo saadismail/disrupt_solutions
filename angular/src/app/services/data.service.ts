@@ -45,4 +45,11 @@ export class DataService {
     return this.http.post('http://localhost:3000/new-question', question, {headers: headers})
       .pipe(map(res => res.json()))
   }
+
+  newComment(comment) {
+    let headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    return this.http.post('http://localhost:3000/new-comment', comment, {headers: headers})
+      .pipe(map(res => res.json()))
+  }
 }

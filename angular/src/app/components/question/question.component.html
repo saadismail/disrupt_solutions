@@ -18,14 +18,14 @@
 
                 <div class="col-sm-2">
                     <br>
-                    <div class="arrow-up"></div>
+                    <div (click)="voteUp()" class="arrow-up"></div>
                     <br>
-                    <div class="arrow-down"></div>
+                    <div (click)="voteDown()" class="arrow-down"></div>
                 </div>
             </div>
         </li>
 
-        <div *ngIf="tags$.length > 0">
+        <div *ngIf="tags$ != undefined && tags$.length > 0">
 
             <br>
             <h4>Tags:</h4>
@@ -35,7 +35,7 @@
             </li>
         </div>
 
-        <div *ngIf="answers$.length > 0">
+        <div *ngIf="answers$ != undefined && answers$.length > 0">
             <br>
             <h4>Answers:</h4>
             
@@ -52,5 +52,21 @@
                 
             </li>
         </div>
+
+        
     </ul>
+</div>
+
+<br><br>
+
+<div *ngIf="authService.isLoggedIn()" class="form-group row">
+    <label for="name" class="col-sm-1 col-form-label">Comment</label>
+    <div class="col-sm-10">
+        <div [froalaEditor] [(froalaModel)]="comment" ></div>
+    </div>
+    <div class="col-sm-1">
+        <form (submit)=onNewCommentSubmit()>
+            <button type="submit" class="btn btn-primary">Comment</button>
+        </form>
+    </div>
 </div>

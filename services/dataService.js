@@ -59,6 +59,20 @@ class DataService {
             }
         });
     }
+
+    newComment(comment, callback) {
+        var sql = "INSERT INTO answer (body, author_id, question_id) VALUES (?, ?, ?)";
+        var values = [comment.body, comment.author_id, comment.question_id];
+        
+        db.query(sql, values, (err, result) => {
+            if (err) {
+                callback(err);
+            } else {
+                console.log(result);
+                callback(null)
+            }
+        });
+    }
 }
 
 module.exports = DataService;

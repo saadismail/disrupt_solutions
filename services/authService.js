@@ -48,7 +48,12 @@ class AuthService {
         var sql = "SELECT * FROM user WHERE email = ?";
         db.query(sql, [email], (err, result) => {
             if (err) callback(err);
-            else callback(null, JSON.parse(JSON.stringify(result[0])));
+            else {
+                if (result.length == 0) {
+                    callback("User does not exist.");
+                }
+                else callback(null, JSON.parse(JSON.stringify(result[0])));
+            }
         })
     }
 

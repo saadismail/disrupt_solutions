@@ -101,4 +101,26 @@ router.post('/new-question', (req, res) => {
     });
 });
 
+router.post('/new-comment', (req, res) => {
+    let comment = {
+        "body": req.body.body,
+        "question_id": req.body.question_id,
+        "author_id": req.body.author_id
+    }
+
+    dataService.newComment(comment, (err) => {
+        if (err) {
+            res.json({
+                success: false,
+                msg: err
+            })
+        } else {
+            res.json({
+                success: true,
+                msg: 'Comment added successfully.'
+            })
+        }
+    });
+});
+
 module.exports = router;
